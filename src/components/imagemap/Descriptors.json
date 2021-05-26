@@ -31,6 +31,19 @@
 			}
 		},
 		{
+			"name": "Table",
+			"description": "",
+			"type": "drawing",
+			"icon": {
+				"prefix": "fas",
+				"name": "table"
+			},
+			"option": {
+				"type": "Table",
+				"name": "New tolygon"
+			}
+		},
+		{
 			"name": "Line",
 			"description": "",
 			"type": "drawing",

@@ -7,7 +7,6 @@ import ImageMapFooterToolbar from './ImageMapFooterToolbar';
 import ImageMapItems from './ImageMapItems';
 import ImageMapTitle from './ImageMapTitle';
 import ImageMapHeaderToolbar from './ImageMapHeaderToolbar';
-import ImageMapPreview from './ImageMapPreview';
 import ImageMapConfigurations from './ImageMapConfigurations';
 import SandBox from '../sandbox/SandBox';
 
@@ -17,6 +16,8 @@ import Container from '../common/Container';
 import CommonButton from '../common/CommonButton';
 import Canvas from '../canvas/Canvas';
 import { code } from '../canvas/constants';
+
+import tegakiLogo from '../../images/tegaki.svg';
 
 const propertiesToInclude = [
 	'id',
@@ -634,6 +635,15 @@ class ImageMapEditor extends Component {
 		});
 	};
 
+	onChange = (event) => {
+		console.log(this.canvasRef.handler.workareaHandler);
+		this.canvasRef.handler.workareaHandler.setImage(event.target.files[0]);
+	}
+
+	reset = () => {
+
+	}
+
 	render() {
 		const {
 			preview,
@@ -706,20 +716,12 @@ class ImageMapEditor extends Component {
 						onClick={onUpload}
 					/>
 				)}
-				<CommonButton
-					className="rde-action-btn"
-					shape="circle"
-					icon="image"
-					tooltipTitle={i18n.t('action.image-save')}
-					onClick={onSaveImage}
-					tooltipPlacement="bottomRight"
-				/>
 			</React.Fragment>
 		);
 		const titleContent = (
-			<React.Fragment>
-				<span>{i18n.t('imagemap.imagemap-editor')}</span>
-			</React.Fragment>
+			<span>
+				<img src={tegakiLogo} alt="tegakiLogo" />
+			</span>
 		);
 		const title = <ImageMapTitle title={titleContent} action={action} />;
 		const content = (
@@ -776,8 +778,13 @@ class ImageMapEditor extends Component {
 							zoomRatio={zoomRatio}
 						/>
 					</div>
+					<label htmlFor="file">
+						Choose a file
+						<input type="file" onChange={this.onChange} accept="image/*" style={{ display: 'none' }} id="file" />
+					</label>
+					<button onClick={this.reset}>Reset</button>
 				</div>
-				<ImageMapConfigurations
+				{/* <ImageMapConfigurations
 					canvasRef={this.canvasRef}
 					onChange={onChange}
 					selectedItem={selectedItem}
@@ -787,14 +794,7 @@ class ImageMapEditor extends Component {
 					animations={animations}
 					styles={styles}
 					dataSources={dataSources}
-				/>
-				<ImageMapPreview
-					preview={preview}
-					onChangePreview={onChangePreview}
-					onTooltip={onTooltip}
-					onClick={onClick}
-					objects={objects}
-				/>
+				/> */}
 			</div>
 		);
 		return <Container title={title} content={content} loading={loading} className="" />;

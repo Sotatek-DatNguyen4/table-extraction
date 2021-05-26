@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import ImageMapEditor from '../components/imagemap/ImageMapEditor';
-import WorkflowEditor from '../components/workflow/WorkflowEditor';
-import FlowContainer from './FlowContainer';
 
-type EditorType = 'imagemap' | 'workflow' | 'flow' | 'hexgrid';
-
-interface IState {
-	activeEditor?: EditorType;
-}
-
-class App extends Component<any, IState> {
-	state: IState = {
-		activeEditor: 'imagemap',
-	};
-
-	onChangeMenu = ({ key }) => {
-		this.setState({
-			activeEditor: key,
-		});
-	};
+class App extends Component {
 
 	render() {
-		const { activeEditor } = this.state;
 		return (
-			<div className="rde-main">
+			<>
 				<Helmet>
 					<meta charSet="utf-8" />
 					<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,12 +29,8 @@ class App extends Component<any, IState> {
 					</script>
 					<script async={true} src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
 				</Helmet>
-				<FlowContainer>
-					<div className="rde-content">
-						<ImageMapEditor />
-					</div>
-				</FlowContainer>
-			</div>
+				<ImageMapEditor />
+			</>
 		);
 	}
 }

@@ -19,56 +19,13 @@ video {
 	top: 0;
 }
 
-.rde-main {
-	overflow: hidden;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	.rde-title {
-		position: absolute;
-		width: 100%;
-		height: 60px;
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
-		-moz-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
-		box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
-		z-index: 2000;
-	}
-	.rde-preview {
-		position: absolute;
-		transform: scale(0);
-		transition: transform 0.3s linear;
-		transform-origin: bottom right;
-		&.preview {
-			width: 100%;
-			transform: scale(1);
-			background: #fff;
-			z-index: 5000;
-			top: 0;
-			bottom: 0;
-		}
-		&-close-btn {
-			position: absolute;
-			top: 12px;
-			right: 12px;
-		}
-	}
-}
-
 .rde-content-layout {
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
 	background: #f2f4f8;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	&-title {
 		width: 100%;
-		height: 38px;
 		background: rgba(217, 217, 217, 0.45);
 		border-bottom: 1px solid #f3f3f3;
 		line-height: 38px;
@@ -113,9 +70,6 @@ video {
 				margin-left: 8px;
 			}
 		}
-	}
-	.ant-layout {
-		background: #f2f4f8;
 	}
 }
 

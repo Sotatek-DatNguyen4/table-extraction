@@ -271,7 +271,7 @@ class ImageMapItems extends Component {
 		return (
 			<div className={className}>
 				<Flex flex="1" flexDirection="column" style={{ height: '100%' }}>
-					<Flex justifyContent="center" alignItems="center" style={{ height: 40 }}>
+					{/* <Flex justifyContent="center" alignItems="center" style={{ height: 40 }}>
 						<CommonButton
 							icon={collapse ? 'angle-double-right' : 'angle-double-left'}
 							shape="circle"
@@ -288,7 +288,7 @@ class ImageMapItems extends Component {
 								allowClear
 							/>
 						)}
-					</Flex>
+					</Flex> */}
 					<Scrollbar>
 						<Flex flex="1" style={{ overflowY: 'hidden' }}>
 							{(textSearch.length && this.renderItems(filteredDescriptors)) ||
