@@ -641,7 +641,12 @@ class ImageMapEditor extends Component {
 	}
 
 	reset = () => {
-
+		this.canvasRef.handler.getObjects().forEach(obj => {
+			if (obj) {
+				this.canvasRef.handler.remove(obj);
+			}
+		});
+		this.canvasRef.handler.workareaHandler.setImage(null);
 	}
 
 	render() {
