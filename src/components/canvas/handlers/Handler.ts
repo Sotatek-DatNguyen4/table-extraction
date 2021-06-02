@@ -725,6 +725,8 @@ class Handler implements HandlerOptions {
 			createdObj = this.fabricObjects[obj.type].create(newOption);
 		}
 		this.canvas.add(createdObj);
+		console.log("mememe", createdObj);
+		this.activeShape = createdObj;
 		this.objects = this.getObjects();
 		if (!editable && !(obj.superType === 'element')) {
 			createdObj.on('mousedown', this.eventHandler.object.mousedown);

@@ -173,6 +173,11 @@ class EventHandler {
 		} else {
 			if (this.handler.editable && this.handler.guidelineOption.enabled) {
 				this.handler.guidelineHandler.movingGuidelines(target);
+				const polygon = this.handler.activeShape;
+				const x = target.getCenterPoint().x;
+				const y = target.getCenterPoint().y;
+                polygon.points[target.name] = {x, y};
+                this.handler.canvas.renderAll();
 			}
 			if (target.type === 'activeSelection') {
 				const activeSelection = target as fabric.ActiveSelection;
@@ -538,9 +543,30 @@ class EventHandler {
 	public selection = (opt: FabricEvent) => {
 		const { onSelect, activeSelectionOption } = this.handler;
 		const target = opt.target as FabricObject<fabric.ActiveSelection>;
+		if(!target) {
+		    return;
+        }
+        const {points = [], canvas } = target;
+        points.forEach((point: any, index: number) => {
+            const circle = new fabric.Circle({
+                radius: 5,
+                fill: 'green',
+                left: point.x,
+                top: point.y,
+                originX: 'center',
+                originY: 'center',
+                hasBorders: false,
+                hasControls: false,
+                name: index.toString(),
+            });
+            canvas.add(circle);
+        });
+
 		if (target && target.type === 'activeSelection') {
 			target.set({
 				...activeSelectionOption,
+                selectable: false,
+                objectCaching: false,
 			});
 		}
 		if (onSelect) {

@@ -4,6 +4,7 @@ import { v4 } from 'uuid';
 import Handler from './Handler';
 import { FabricEvent, FabricObject } from '../utils';
 import { Arrow, Line } from '../objects';
+import ComponentManager from '../../ComponentManager';
 
 class DrawingHandler {
 	handler: Handler;
@@ -91,7 +92,9 @@ class DrawingHandler {
 					hasBorders: false,
 					hasControls: false,
 					evented: false,
+                    objectCaching: false,
 				});
+				console.log('new polygon 1');
 				this.handler.canvas.remove(this.handler.activeShape);
 				this.handler.canvas.add(polygon);
 				this.handler.activeShape = polygon;
@@ -108,6 +111,8 @@ class DrawingHandler {
 					hasControls: false,
 					evented: false,
 				});
+                console.log('new polygon 2');
+				ComponentManager.getInstance().polygon = polygon;
 				this.handler.activeShape = polygon;
 				this.handler.canvas.add(polygon);
 			}
@@ -131,6 +136,8 @@ class DrawingHandler {
 				this.handler.canvas.remove(line);
 			});
 			this.handler.canvas.remove(this.handler.activeShape).remove(this.handler.activeLine);
+			this.handler.canvas.remove(this.handler.activeLine);
+			console.log(111, points);
 			const option = {
 				id,
 				points,
@@ -146,7 +153,7 @@ class DrawingHandler {
 			this.handler.add(option, false);
 			this.handler.pointArray = [];
 			this.handler.activeLine = null;
-			this.handler.activeShape = null;
+            console.log('ativeshape 3');
 			this.handler.interactionHandler.selection();
 		},
 		// TODO... polygon resize
